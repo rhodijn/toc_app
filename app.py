@@ -45,7 +45,7 @@ class flask_app:
             """
             return render_template('upload.html', title='Inhaltsverzeichnis')
 
-        @self.app.route('/success', methods=['POST'])
+        @self.app.route('/result', methods=['POST'])
         def success():
             """
             Rendert ein HTML Formular. Der Ordner *templates* muss neben
@@ -55,7 +55,7 @@ class flask_app:
                 f = request.files['file']
                 if f.filename.split('.')[-1] in ALLOWED_EXTENSIONS:
                     f.save(f"uploads/{f.filename}")
-                return render_template('success.html', title='Inhaltsverzeichnis', name=f.filename)
+                return render_template('result.html', title='Inhaltsverzeichnis', name=f.filename)
 
     # ------------------------------------------------------------------
     # Server starten
