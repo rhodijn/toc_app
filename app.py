@@ -13,7 +13,7 @@
 
 from flask import Flask, jsonify, render_template, request
 
-UPLOAD_FOLDER = '/uploads'
+UPLOAD_FOLDER = 'upload'
 ALLOWED_EXTENSIONS = {'pdf'}
 
 class flask_app:
@@ -54,7 +54,7 @@ class flask_app:
             if request.method == 'POST':
                 f = request.files['file']
                 if f.filename.split('.')[-1] in ALLOWED_EXTENSIONS:
-                    f.save(f"uploads/{f.filename}")
+                    f.save(f"upload/{f.filename}")
                 return render_template('result.html', title='Inhaltsverzeichnis', name=f.filename)
 
     # ------------------------------------------------------------------
