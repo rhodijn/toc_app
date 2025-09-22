@@ -46,7 +46,7 @@ class flask_app:
             return render_template('upload.html', title='Inhaltsverzeichnis')
 
         @self.app.route('/result', methods=['POST'])
-        def success():
+        def result():
             """
             Rendert ein HTML Formular. Der Ordner *templates* muss neben
             dieser Datei liegen und eine Datei *upload.html* enthalten.
