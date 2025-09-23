@@ -50,7 +50,7 @@ class flask_app:
         def result():
             """
             Rendert ein HTML Formular. Der Ordner *templates* muss neben
-            dieser Datei liegen und eine Datei *upload.html* enthalten.
+            dieser Datei liegen und eine Datei *result.html* enthalten.
             """
             if request.method == 'POST':
                 f = request.files['file']
