@@ -56,6 +56,7 @@ class flask_app:
             Rendert ein HTML Formular. Der Ordner *templates* muss neben
             dieser Datei liegen und eine Datei *result.html* enthalten.
             """
+            marc = None
             url = None
 
             if request.method == 'POST':
@@ -74,6 +75,7 @@ class flask_app:
                             network_id = data['linked_record_id']['value']
                             url = upload_pdf(f"upload/{barcode}.{f.filename.split('.')[-1].lower()}", network_id,)
                             msg = f"Upload erfolgreich: Barcode {barcode}, Bibliothek {l}, Netword Id {network_id}"
+                            marc = f"$$3 Inhaltsverzeichnis $$q PDF $$u {url}"
                         except:
                             msg = f"abgebrochen: Network Id zu Item {barcode} nicht gefunden"
                     except:
@@ -81,7 +83,7 @@ class flask_app:
                 else:
                     msg = 'ungültiges Dateiformat, bitte eine pdf-Datei auswählen'
 
-                return render_template('result.html', title='Inhaltsverzeichnis', message=msg, name=f.filename, url=url)
+                return render_template('result.html', title='Inhaltsverzeichnis', marc=marc, message=msg, name=f.filename, url=url)
 
     # ------------------------------------------------------------------
     # Server starten
