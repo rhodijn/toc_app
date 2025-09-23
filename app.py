@@ -74,7 +74,7 @@ class flask_app:
                             req, get_network_id = api_request('get', mmsid_iz, 'j', 'bibs/', CONFIG["api"]["get"])
                             data = json.loads(get_network_id.content.decode(encoding='utf-8'))
                             network_id = data['linked_record_id']['value']
-                            # url = upload_pdf(f"upload/{barcode}.{f.filename.split('.')[-1].lower()}", network_id)
+                            url = upload_pdf(f"{barcode}.{f.filename.split('.')[-1].lower()}", l, network_id)
                             msg = f"Upload erfolgreich: Barcode {barcode}, Bibliothek {l}, Netword Id {network_id}"
                             marc = f"$$3 Inhaltsverzeichnis $$q PDF $$u {url}"
                         except:
