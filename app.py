@@ -11,11 +11,15 @@
 #     ###################
 
 
-from flask import Flask, jsonify, render_template, request
+from dotenv import dotenv_values
+from flask import Flask, render_template, request
+from modules.apihandler import *
+from modules.uploader import *
 
-
-UPLOAD_FOLDER = 'upload'
 ALLOWED_EXTENSIONS = {'pdf'}
+SECRETS = dotenv_values('.env')
+UPLOAD_FOLDER = 'upload'
+
 
 class flask_app:
     """
@@ -60,6 +64,7 @@ class flask_app:
                     msg = f"Die Datei wurde gespeichtert, Barcode: {barcode}"
                 else:
                     msg = 'ungültiges Dateiformat, bitte eine pdf-Datei auswählen'
+
                 return render_template('result.html', title='Inhaltsverzeichnis', message=msg, name=f.filename)
 
     # ------------------------------------------------------------------

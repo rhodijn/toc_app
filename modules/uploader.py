@@ -13,9 +13,9 @@
 
 import os, paramiko
 from dotenv import dotenv_values
+from jsonhandler import *
 
-
-secrets = dotenv_values('.env')
+SECRETS = dotenv_values('.env')
 
 
 def upload_pdf(processing: dict, filepath: str, lib: str) -> dict:
@@ -36,10 +36,10 @@ def upload_pdf(processing: dict, filepath: str, lib: str) -> dict:
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh_client.connect(
-        hostname=secrets['FTP_URL'],
+        hostname=SECRETS['FTP_URL'],
         port=config['ftp']['port'],
-        username=secrets['FTP_USER'],
-        password=secrets['FTP_PASS'],
+        username=SECRETS['FTP_USER'],
+        password=SECRETS['FTP_PASS'],
         look_for_keys=False
     )
 
@@ -52,7 +52,7 @@ def upload_pdf(processing: dict, filepath: str, lib: str) -> dict:
     else:
         try:
             sftp_client.put(filepath, f"{config['path']['r']}{config['library'][lib]}{processing['mms_id']['nz']}.pdf")
-            url = f"https://{secrets['FTP_URL']}/{config['path']['r']}{config['library'][lib]}{processing['mms_id']['nz']}.pdf"
+            url = f"https://{SECRETS['FTP_URL']}/{config['path']['r']}{config['library'][lib]}{processing['mms_id']['nz']}.pdf"
             processing.update({'file_uploaded': True, 'url': url})
             processing['filename'].update({'remote': url.split('/')[-1]})
             processing['messages'].append('pdf uploaded')

@@ -1,0 +1,29 @@
+{
+    "api": {
+        "get": "?view=full&expand=p_avail",
+        "put": "?validate=true&override_warning=true&override_lock=false&stale_version_check=false&cataloger_level=50&check_match=false",
+        "j": "json",
+        "x": "xml",
+        "header": {
+            "Accept": "application/xml",
+            "Content-Type": "application/xml"
+        }
+    },
+    "ftp": {
+        "port": 22
+    },
+    "path": {
+        "d": "data/",
+        "h": "toc/local/",
+        "l": "log/",
+        "r": "public/swisscovery/inhaltsverzeichnis/",
+        "t": "temp/",
+        "u": "upload/",
+        "x": "xml/"
+    },
+    "library": {
+        "wae": "waedenswil/",
+        "win": "winterthur/",
+        "zue": "zuerich/"
+    }
+}

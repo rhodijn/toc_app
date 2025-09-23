@@ -13,9 +13,9 @@
 
 import os, requests
 from dotenv import dotenv_values
+from modules.jsonhandler import *
 
-
-secrets = dotenv_values('.env')
+SECRETS = dotenv_values('.env')
 
 
 def api_request(method: str, value: str, frmt: str, par_1: str, par_2='') -> tuple:
@@ -36,16 +36,14 @@ def api_request(method: str, value: str, frmt: str, par_1: str, par_2='') -> tup
     response = False
 
     if method == 'get':
-
         if frmt == 'j':
-            req = f"{secrets['API_URL']}{par_1}{value}{par_2}&apikey={secrets['API_KEY']}&format={config['api']['j']}"
+            req = f"{SECRETS['API_URL']}{par_1}{value}{par_2}&apikey={SECRETS['API_KEY']}&format={config['api']['j']}"
         elif frmt == 'x':
-            req = f"{secrets['API_URL']}{par_1}{value}{par_2}&apikey={secrets['API_KEY']}&format={config['api']['x']}"
+            req = f"{SECRETS['API_URL']}{par_1}{value}{par_2}&apikey={SECRETS['API_KEY']}&format={config['api']['x']}"
         response = requests.get(req)
     elif method == 'put':
-        req = f"{secrets['API_URL']}{par_1}{value}{par_2}&apikey={secrets['API_KEY']}"
+        req = f"{SECRETS['API_URL']}{par_1}{value}{par_2}&apikey={SECRETS['API_KEY']}"
         filename = os.listdir('xml/')
-
         if filename:
             response = requests.put(req, headers=config['api']['header'], data=etree.tostring(etree.parse(f"xml/{filename[0]}")))
             # delete the enriched marc-xml file from the local drive
@@ -67,7 +65,6 @@ def check_url(processing: dict) -> dict:
     try:
         if processing['url']:
             response = requests.head(processing['url'])
-
             if response.status_code == 200:
                 processing.update({'link_tested': True})
                 processing['messages'].append(f"link tested (code: {response.status_code})")
