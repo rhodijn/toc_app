@@ -45,8 +45,10 @@ def upload_pdf(filename: str, lib: str, network_id: int) -> dict:
 
     if f"{network_id}.pdf" not in remote_files:
         try:
-            sftp_client.put(filename, f"{config['path']['r']}{config['library'][lib]}{network_id}.pdf")
+            sftp_client.put(f"upload/{filename}", f"{config['path']['r']}{config['library'][lib]}{network_id}.pdf")
             url = f"https://{SECRETS['FTP_URL']}/{config['path']['r']}{config['library'][lib]}{network_id}.pdf"
+            if os.path.exists(f"upload/{filename}"):
+                os.remove(f"upload/{filename}")
         except:
             pass
 
@@ -54,11 +56,3 @@ def upload_pdf(filename: str, lib: str, network_id: int) -> dict:
     ssh_client.close()
 
     return url
-
-
-def rm_file(filepath: str) -> dict:
-    """
-    delete the local toc-file
-    """    
-    if os.path.exists(filepath):
-        os.remove(filepath)
