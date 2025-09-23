@@ -70,11 +70,11 @@ class flask_app:
                             get_nz_mmsid = api_request('get', mmsid_iz, 'j', 'bibs/', CONFIG["api"]["get"])
                             data = json.loads(get_nz_mmsid.content.decode(encoding='utf-8'))
                             mmsid_nz = data['linked_record_id']['value']
+                            msg = f"Upload erfolgreich: Barcode: {barcode}, Bibliothek: {l}, Netword Id: {mmsid_nz}"
                         except:
-                            mmsid_nz = None
+                            msg = f"abgebrochen: Network Id zu Item {barcode} nicht gefunden"
                     except:
-                        mmsid_nz = None
-                    msg = f"Die Datei wurde gespeichtert, Barcode: {barcode}, Bibliothek: {l}, Netword Id: {mmsid_nz}"
+                        msg = f"abgebrochen: MMS ID zu Item {barcode} nicht gefunden"
                 else:
                     msg = 'ungültiges Dateiformat, bitte eine pdf-Datei auswählen'
 
