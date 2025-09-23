@@ -54,11 +54,12 @@ class flask_app:
             """
             if request.method == 'POST':
                 f = request.files['file']
-                if f.filename.split('.')[-1] in ALLOWED_EXTENSIONS:
+                if f.filename.split('.')[-1].lower() in ALLOWED_EXTENSIONS:
+                    barcode = f.filename.split('.')[0].upper()
                     f.save(f"upload/{f.filename}")
-                    msg = 'Die Datei wurde gespeichtert.'
+                    msg = f"Die Datei wurde gespeichtert, Barcode: {barcode}"
                 else:
-                    msg = 'ungültiges Dateiformat'
+                    msg = 'ungültiges Dateiformat, bitte eine pdf-Datei auswählen'
                 return render_template('result.html', title='Inhaltsverzeichnis', message=msg, name=f.filename)
 
     # ------------------------------------------------------------------
