@@ -19,7 +19,7 @@ ALLOWED_EXTENSIONS = {'pdf'}
 
 class flask_app:
     """
-    Eine minimale Flask App, komplett in einer Klasse gekapselt.
+    Eine kleine Flask App, komplett in einer Klasse gekapselt
     """
     def __init__(self, host: str = '127.0.0.1', port: int = 5000, debug: bool = True):
         # Flask‑Instanz erzeugen
