@@ -57,6 +57,7 @@ class flask_app:
             dieser Datei liegen und eine Datei *result.html* enthalten.
             """
             marc = None
+            req = None
             url = None
 
             if request.method == 'POST':
@@ -65,23 +66,23 @@ class flask_app:
                 if f.filename.split('.')[-1].lower() in ALLOWED_EXTENSIONS:
                     barcode = f.filename.split('.')[0].upper()
                     f.save(f"upload/{barcode}.{f.filename.split('.')[-1].lower()}")
-                    get_iz_mmsid = api_request('get', barcode, 'j', 'items?item_barcode=')
+                    req, get_iz_mmsid = api_request('get', barcode, 'j', 'items?item_barcode=')
                     data = json.loads(get_iz_mmsid.content.decode(encoding='utf-8'))
                     try:
                         mmsid_iz = data['bib_data']['mms_id']
                         try:
-                            get_network_id = api_request('get', mmsid_iz, 'j', 'bibs/', CONFIG["api"]["get"])
+                            req, get_network_id = api_request('get', mmsid_iz, 'j', 'bibs/', CONFIG["api"]["get"])
                             data = json.loads(get_network_id.content.decode(encoding='utf-8'))
                             network_id = data['linked_record_id']['value']
-                            url = upload_pdf(f"upload/{barcode}.{f.filename.split('.')[-1].lower()}", network_id,)
+                            # url = upload_pdf(f"upload/{barcode}.{f.filename.split('.')[-1].lower()}", network_id)
                             msg = f"Upload erfolgreich: Barcode {barcode}, Bibliothek {l}, Netword Id {network_id}"
                             marc = f"$$3 Inhaltsverzeichnis $$q PDF $$u {url}"
                         except:
-                            msg = f"abgebrochen: Network Id zu Item {barcode} nicht gefunden"
+                            msg = f"abgebrochen: Network Id zu Item {barcode} nicht gefunden ({req})"
                     except:
-                        msg = f"abgebrochen: MMS ID zu Item {barcode} nicht gefunden"
+                        msg = f"abgebrochen: MMS ID zu Item {barcode} nicht gefunden ({req})"
                 else:
-                    msg = 'ungültiges Dateiformat, bitte eine pdf-Datei auswählen'
+                    msg = f"ungültiges Dateiformat ({f.filename.split('.')[-1].lower()}), bitte eine pdf-Datei auswählen ({req})"
 
                 return render_template('result.html', title='Inhaltsverzeichnis', marc=marc, message=msg, name=f.filename, url=url)
 
