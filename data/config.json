@@ -14,12 +14,8 @@
     },
     "path": {
         "d": "data/",
-        "h": "toc/local/",
-        "l": "log/",
         "r": "public/swisscovery/inhaltsverzeichnis/",
-        "t": "temp/",
-        "u": "upload/",
-        "x": "xml/"
+        "u": "upload/"
     },
     "library": {
         "wae": "waedenswil/",

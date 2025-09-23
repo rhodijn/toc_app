@@ -22,8 +22,9 @@ def upload_pdf(filename: str, lib: str, network_id: int) -> dict:
     upload toc-file (pdf) to remote server (if file  is not online yet)
 
     parameters:
-    filename: str = path to local file (including file name)
-    lib: str = remote path to files of library (winterthur or waedenswil)
+    filename: str = file name of the local file
+    lib: str = code for the library
+    network_id: str = network id of the bibliographic record
     """
     config = load_json('config.json', 'd')
     remote_files : list = []
@@ -45,10 +46,10 @@ def upload_pdf(filename: str, lib: str, network_id: int) -> dict:
 
     if f"{network_id}.pdf" not in remote_files:
         try:
-            sftp_client.put(f"upload/{filename}", f"{config['path']['r']}{config['library'][lib]}{network_id}.pdf")
+            sftp_client.put(f"{config['path']['u']}{filename}", f"{config['path']['r']}{config['library'][lib]}{network_id}.pdf")
             url = f"https://{SECRETS['FTP_URL']}/{config['path']['r']}{config['library'][lib]}{network_id}.pdf"
-            if os.path.exists(f"upload/{filename}"):
-                os.remove(f"upload/{filename}")
+            if os.path.exists(f"{config['path']['u']}{filename}"):
+                os.remove(f"{config['path']['u']}{filename}")
         except:
             pass
 
