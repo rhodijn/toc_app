@@ -53,29 +53,29 @@
     <p>ausgewählte Datei: <em>{{ name }}</em></p>
     <p>{{ message }}</p>
     <p>Feld 856 mit den Intikatoren 4 und 2 einfügen</p>
-    <input title="marcxml" type="text" value="{{ marc }}" id="myInput" size="80" />
+    <input title="marcxml" type="text" value="{{ marc }}" id="marc_field" size="40" />
 
     <div class="tooltip">
         <button onclick="myFunction()" onmouseout="outFunc()">
-            <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+            <span class="tooltiptext" id="myTooltip">kopieren</span>
             kopieren
         </button>
     </div>
 
     <script>
 function myFunction() {
-  var copyText = document.getElementById("myInput");
+  var copyText = document.getElementById("marc_field");
   copyText.select();
   copyText.setSelectionRange(0, 99999);
   navigator.clipboard.writeText(copyText.value);
   
   var tooltip = document.getElementById("myTooltip");
-  tooltip.innerHTML = "Copied: " + copyText.value;
+  tooltip.innerHTML = "kopiert";
 }
 
 function outFunc() {
   var tooltip = document.getElementById("myTooltip");
-  tooltip.innerHTML = "Copy to clipboard";
+  tooltip.innerHTML = "kopieren";
 }
     </script>
     <p><a href="{{ url }}" target="_blank">Inhaltsverzeichnis</a></p>
