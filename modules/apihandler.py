@@ -41,13 +41,6 @@ def api_request(method: str, value: str, frmt: str, par_1: str, par_2='') -> tup
         elif frmt == 'x':
             req = f"{SECRETS['API_URL']}{par_1}{value}{par_2}&apikey={SECRETS['API_KEY']}&format={config['api']['x']}"
         response = requests.get(req)
-    elif method == 'put':
-        req = f"{SECRETS['API_URL']}{par_1}{value}{par_2}&apikey={SECRETS['API_KEY']}"
-        filename = os.listdir('xml/')
-        if filename:
-            response = requests.put(req, headers=config['api']['header'], data=etree.tostring(etree.parse(f"xml/{filename[0]}")))
-            # delete the enriched marc-xml file from the local drive
-            # os.remove(f"xml/{filename[0]}")
 
     return req, response
 
