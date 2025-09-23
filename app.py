@@ -71,9 +71,9 @@ class flask_app:
                             data = json.loads(get_nz_mmsid.content.decode(encoding='utf-8'))
                             mmsid_nz = data['linked_record_id']['value']
                         except:
-                            pass
+                            mmsid_nz = None
                     except:
-                        pass
+                        mmsid_nz = None
                     msg = f"Die Datei wurde gespeichtert, Barcode: {barcode}, Bibliothek: {l}, Netword Id: {mmsid_nz}"
                 else:
                     msg = 'ungültiges Dateiformat, bitte eine pdf-Datei auswählen'
