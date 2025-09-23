@@ -18,6 +18,7 @@ from modules.uploader import *
 ALLOWED_EXTENSIONS = {'pdf'}
 SECRETS = dotenv_values('.env')
 UPLOAD_FOLDER = 'upload'
+CONFIG = load_json('config.json', 'd')
 
 
 class flask_app:
@@ -57,10 +58,23 @@ class flask_app:
             """
             if request.method == 'POST':
                 f = request.files['file']
+                l = request.form.get('library')
                 if f.filename.split('.')[-1].lower() in ALLOWED_EXTENSIONS:
                     barcode = f.filename.split('.')[0].upper()
                     f.save(f"upload/{f.filename}")
-                    msg = f"Die Datei wurde gespeichtert, Barcode: {barcode}"
+                    get_iz_mmsid = api_request('get', barcode, 'j', 'items?item_barcode=')
+                    data = json.loads(get_iz_mmsid.content.decode(encoding='utf-8'))
+                    try:
+                        mmsid_iz = data['bib_data']['mms_id']
+                        try:
+                            get_nz_mmsid = api_request('get', mmsid_iz, 'j', 'bibs/', CONFIG["api"]["get"])
+                            data = json.loads(get_nz_mmsid.content.decode(encoding='utf-8'))
+                            mmsid_nz = data['linked_record_id']['value']
+                        except:
+                            pass
+                    except:
+                        pass
+                    msg = f"Die Datei wurde gespeichtert, Barcode: {barcode}, Bibliothek: {l}, Netword Id: {mmsid_nz}"
                 else:
                     msg = 'ungültiges Dateiformat, bitte eine pdf-Datei auswählen'
 
