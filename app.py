@@ -56,6 +56,8 @@ class flask_app:
             Rendert ein HTML Formular. Der Ordner *templates* muss neben
             dieser Datei liegen und eine Datei *result.html* enthalten.
             """
+            url = None
+
             if request.method == 'POST':
                 f = request.files['file']
                 l = request.form.get('library')
@@ -79,7 +81,7 @@ class flask_app:
                 else:
                     msg = 'ungültiges Dateiformat, bitte eine pdf-Datei auswählen'
 
-                return render_template('result.html', title='Inhaltsverzeichnis', message=msg, name=f.filename)
+                return render_template('result.html', title='Inhaltsverzeichnis', message=msg, name=f.filename, url=url)
 
     # ------------------------------------------------------------------
     # Server starten
