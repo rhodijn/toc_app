@@ -67,10 +67,11 @@ class flask_app:
                     try:
                         mmsid_iz = data['bib_data']['mms_id']
                         try:
-                            get_nz_mmsid = api_request('get', mmsid_iz, 'j', 'bibs/', CONFIG["api"]["get"])
-                            data = json.loads(get_nz_mmsid.content.decode(encoding='utf-8'))
-                            mmsid_nz = data['linked_record_id']['value']
-                            msg = f"Upload erfolgreich: Barcode {barcode}, Bibliothek {l}, Netword Id {mmsid_nz}"
+                            get_network_id = api_request('get', mmsid_iz, 'j', 'bibs/', CONFIG["api"]["get"])
+                            data = json.loads(get_network_id.content.decode(encoding='utf-8'))
+                            network_id = data['linked_record_id']['value']
+                            url = upload_pdf(f"upload/{barcode}.{f.filename.split('.')[-1].lower()}", network_id,)
+                            msg = f"Upload erfolgreich: Barcode {barcode}, Bibliothek {l}, Netword Id {network_id}"
                         except:
                             msg = f"abgebrochen: Network Id zu Item {barcode} nicht gefunden"
                     except:
