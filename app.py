@@ -61,7 +61,7 @@ class flask_app:
                 l = request.form.get('library')
                 if f.filename.split('.')[-1].lower() in ALLOWED_EXTENSIONS:
                     barcode = f.filename.split('.')[0].upper()
-                    f.save(f"upload/{f.filename}")
+                    f.save(f"upload/{barcode}.{f.filename.split('.')[-1].lower()}")
                     get_iz_mmsid = api_request('get', barcode, 'j', 'items?item_barcode=')
                     data = json.loads(get_iz_mmsid.content.decode(encoding='utf-8'))
                     try:
@@ -70,7 +70,7 @@ class flask_app:
                             get_nz_mmsid = api_request('get', mmsid_iz, 'j', 'bibs/', CONFIG["api"]["get"])
                             data = json.loads(get_nz_mmsid.content.decode(encoding='utf-8'))
                             mmsid_nz = data['linked_record_id']['value']
-                            msg = f"Upload erfolgreich: Barcode: {barcode}, Bibliothek: {l}, Netword Id: {mmsid_nz}"
+                            msg = f"Upload erfolgreich: Barcode {barcode}, Bibliothek {l}, Netword Id {mmsid_nz}"
                         except:
                             msg = f"abgebrochen: Network Id zu Item {barcode} nicht gefunden"
                     except:
