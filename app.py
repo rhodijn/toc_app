@@ -13,6 +13,7 @@
 
 from flask import Flask, jsonify, render_template, request
 
+
 UPLOAD_FOLDER = 'upload'
 ALLOWED_EXTENSIONS = {'pdf'}
 
