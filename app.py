@@ -56,7 +56,10 @@ class flask_app:
                 f = request.files['file']
                 if f.filename.split('.')[-1] in ALLOWED_EXTENSIONS:
                     f.save(f"upload/{f.filename}")
-                return render_template('result.html', title='Inhaltsverzeichnis', name=f.filename)
+                    msg = 'Die Datei wurde gespeichtert.'
+                else:
+                    msg = 'ungültiges Dateiformat'
+                return render_template('result.html', title='Inhaltsverzeichnis', message=msg, name=f.filename)
 
     # ------------------------------------------------------------------
     # Server starten
