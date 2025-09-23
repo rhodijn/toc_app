@@ -75,16 +75,16 @@ class flask_app:
                             data = json.loads(get_network_id.content.decode(encoding='utf-8'))
                             network_id = data['linked_record_id']['value']
                             url = upload_pdf(f"{barcode}.{f.filename.split('.')[-1].lower()}", l, network_id)
-                            msg = f"Upload erfolgreich: Barcode {barcode}, Bibliothek {l}, Netword Id {network_id}"
+                            msg = f"Bibliothek: {CONFIG['library'][l].rstrip('/').capitalize()}"
                             marc = f"$$3 Inhaltsverzeichnis $$q PDF $$u {url}"
                         except:
-                            msg = f"abgebrochen: Network Id zu Item {barcode} nicht gefunden ({req})"
+                            msg = f"abgebrochen: Network Id zu Item {barcode} nicht gefunden"
                     except:
-                        msg = f"abgebrochen: MMS ID zu Item {barcode} nicht gefunden ({req})"
+                        msg = f"abgebrochen: MMS ID zu Item {barcode} nicht gefunden"
                 else:
                     msg = f"ungültiges Dateiformat ({f.filename.split('.')[-1].lower()}), bitte eine pdf-Datei auswählen ({req})"
 
-                return render_template('result.html', title='Inhaltsverzeichnis', marc=marc, message=msg, name=f.filename, url=url)
+                return render_template('result.html', id=network_id, marc=marc, message=msg, name=f.filename, url=url)
 
     # ------------------------------------------------------------------
     # Server starten

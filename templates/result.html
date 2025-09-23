@@ -48,37 +48,31 @@
 </head>
 
 <body>
-    <h1>{{ title }}</h1>
+    <h1>Inhaltsverzeichnis</h1>
     <h2>Upload fertig</h2>
-    <p>ausgewählte Datei: <em>{{ name }}</em></p>
+    <p>Datei: {{ name }}</p>
     <p>{{ message }}</p>
-    <p>Feld 856 mit den Intikatoren 4 und 2 einfügen</p>
-    <input title="marcxml" type="text" value="{{ marc }}" id="marc_field" size="40" />
-
-    <div class="tooltip">
-        <button onclick="myFunction()" onmouseout="outFunc()">
-            <span class="tooltiptext" id="myTooltip">kopieren</span>
-            kopieren
-        </button>
-    </div>
+    <p>Datensatz:</p>
+    <input title="Network Id" type="text" value="{{ id }}" id="network_id" />
+    <button title="kopieren" type="button" onclick="cpTextFunc('network_id')">
+        kopieren
+    </button>
+    <p>Feld 856 42 einfügen:</p>
+    <input title="MARC XML" type="text" value="{{ marc }}" id="marc_data" />
+    <button title="kopieren" type="button" onclick="cpTextFunc('marc_data')">
+        kopieren
+    </button>
 
     <script>
-function myFunction() {
-  var copyText = document.getElementById("marc_field");
+function cpTextFunc(field) {
+  var copyText = document.getElementById(field);
   copyText.select();
   copyText.setSelectionRange(0, 99999);
   navigator.clipboard.writeText(copyText.value);
-  
-  var tooltip = document.getElementById("myTooltip");
-  tooltip.innerHTML = "kopiert";
-}
-
-function outFunc() {
-  var tooltip = document.getElementById("myTooltip");
-  tooltip.innerHTML = "kopieren";
 }
     </script>
-    <p><a href="{{ url }}" target="_blank">Inhaltsverzeichnis</a></p>
+
+    <p>Link überprüfen: <a href="{{ url }}" target="_blank">Inhaltsverzeichnis</a></p>
     <p><a href="/">zurück</a> zum Formular</p>
 </body>
 
