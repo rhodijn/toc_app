@@ -23,7 +23,7 @@ CONFIG = load_json('config.json', 'd')
 
 class flask_app:
     """
-    Eine kleine Flask App, komplett in einer Klasse gekapselt
+    Eine Flask App, komplett in einer Klasse gekapselt
     """
     def __init__(self, host: str = '127.0.0.1', port: int = 5000, debug: bool = True):
         # Flask‑Instanz erzeugen
@@ -97,7 +97,7 @@ class flask_app:
 
 
 # ----------------------------------------------------------------------
-# Wenn das Skript direkt ausgeführt wird, eine Instanz erzeugen und starten
+# wenn das Skript direkt ausgeführt wird, Instanz erzeugen und starten
 # ----------------------------------------------------------------------
 if __name__ == '__main__':
     # Optional: Parameter per Kommandozeile oder Umgebungsvariablen anpassen
