@@ -49,22 +49,26 @@
 
 <body>
     <h1>Inhaltsverzeichnis</h1>
-    <h2>Upload erfolgreich</h2>
-    <p>Datei: {{ name }}</p>
+    <h2>Upload {{ val }}erfolgreich</h2>
+    <p>Datei: <code>{{ name }}</code></p>
     <p>{{ message }}</p>
-    <p>Datensatz aufrufen:
+    <p>Datensatz:
       <input title="Network Id" type="text" value="{{ id }}" id="network_id" />
       <button title="kopieren" type="button" onclick="cpTextFunc('network_id')">
         kopieren
       </button>
     </p>
-    <p>in Feld <code>856 42</code> einfügen:
+    {% block body %}
+      {% if url %}
+    <p>Feld <code>856 42</code>:
       <input title="MARC XML" type="text" value="{{ marc }}" id="marc_data" />
       <button title="kopieren" type="button" onclick="cpTextFunc('marc_data')">
         kopieren
       </button>
-    </p>
-    <p>Link überprüfen: <a href="{{ url }}" target="_blank">Inhaltsverzeichnis</a></p>
+    </p>  
+    <p>Link überprüfen: <a href="{{ url }}" target=\"_blank\">Inhaltsverzeichnis</a></p>
+      {% endif %}
+    {% endblock %}
     <p><a href="/">zurück</a> zur Eingabemaske</p>
 
     <script>

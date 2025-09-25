@@ -48,10 +48,11 @@ def upload_pdf(filename: str, lib: str, network_id: int) -> dict:
         try:
             sftp_client.put(f"{config['path']['u']}{filename}", f"{config['path']['r']}{config['library'][lib]}{network_id}.pdf")
             url = f"https://{SECRETS['FTP_URL']}/{config['path']['r']}{config['library'][lib]}{network_id}.pdf"
+        except:
+            url = False
+        else:
             if os.path.exists(f"{config['path']['u']}{filename}"):
                 os.remove(f"{config['path']['u']}{filename}")
-        except:
-            pass
 
     sftp_client.close()
     ssh_client.close()
