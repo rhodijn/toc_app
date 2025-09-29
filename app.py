@@ -21,7 +21,7 @@ UPLOAD_FOLDER = 'upload'
 CONFIG = load_json('config.json', 'd')
 
 
-class flask_app:
+class toc_app:
     """
     Eine Flask App, komplett in einer Klasse gekapselt
     """
@@ -116,5 +116,5 @@ class flask_app:
 # ----------------------------------------------------------------------
 if __name__ == '__main__':
     # Optional: Parameter per Kommandozeile oder Umgebungsvariablen anpassen
-    app_instance = flask_app()
+    app_instance = toc_app()
     app_instance.run()
