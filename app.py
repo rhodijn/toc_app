@@ -27,9 +27,7 @@ class toc_app:
     """
     def __init__(self, host: str = '127.0.0.1', port: int = 5000, debug: bool = True):
         # Flask‑Instanz erzeugen
-        self.app = Flask(__name__,
-                         static_folder='static/',
-                         static_url_path='')
+        self.app = Flask(__name__)
         self.app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
         # Konfigurationswerte speichern (können später verwendet werden)
