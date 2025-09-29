@@ -31,15 +31,30 @@
                         Bibliothek und eine PDF-Datei für den Upload auswählen
                     </p>
                     <form title="pdf upload" method="POST" action="result" enctype="multipart/form-data">
-                        <input id="winterthur" name="library" type="radio" value="win" />
-                        <label for="winterthur" title="Winterthur">Winterthur</label>
-                        <input id="waedenswil" name="library" type="radio" value="wae" />
-                        <label for="waedenswil" title="Wädenswil">Wädenswil</label>
-                        <input id="zuerich" name="library" type="radio" value="zue" />
-                        <label for="zuerich" title="Zürich">Zürich</label>
-                        <input accept="pdf" id="file" name="file" title="durchsuchen" type="file" required />
-                        <label for="file"></label>
-                        <button title="hochladen" type="submit">hochladen</button>
+                        <label for="library">
+                            Bibliothek <span class="is-red">*</span>
+                        </label>
+                        <select title="library" id="library" name="library" class="form-control" required>
+                            <option id="" value="">
+                            </option>
+                            <option id="winterthur" value="win">
+                                Winterthur
+                            </option>
+                            <option id="waedenswil" value="wae">
+                                Wädenswil
+                            </option>
+                            <option id="zuerich" value="zue">
+                                Zürich
+                            </option>
+                        </select>
+                        <label for="file">
+                            PDF Datei hochladen <span class="is-red">*</span>
+                        </label>
+                        <input id="file" type="file" name="file" filetype="pdf" accept=".pdf"
+                            class="form-control" required />
+                        <div class="text-end">
+                            <button type="submit" name="load" class="btn btn-primary">hochladen</button>
+                        </div>
                     </form>
                 </div>
             </div>
