@@ -11,33 +11,47 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-6 col-lg-4"> <!-- ohne col- (Handy) sm (Tablet) md (small laptop) lg (laptop) xl (desktop)-->
-                Reihe 1, Spalte 1
-            </div>
-            <div class="col-12 col-sm-6 col-lg-4">
-                Reihe 1, Spalte 2
-            </div>
-            <div class="col-12 col-sm-6 col-lg-4">
-                Reihe 1, Spalte 3, 1 Spalte auslassen
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                </div>
             </div>
         </div>
-    </div>
-    <h1>Inhaltsverzeichnis</h1>
-    <h2>Datei Upload</h2>
-    <p>Bibliothek und eine PDF-Datei für den Upload auswählen</p>
-    <form title="pdf upload" method="POST" action="result" enctype="multipart/form-data">
-        <input id="winterthur" name="library" type="radio" value="win" />
-        <label for="winterthur" title="Winterthur">Winterthur</label><br />
-        <input id="waedenswil" name="library" type="radio" value="wae" />
-        <label for="waedenswil" title="Wädenswil">Wädenswil</label><br />
-        <input id="zuerich" name="library" type="radio" value="zue" />
-        <label for="zuerich" title="Zürich">Zürich</label><br /><br />
-        <input accept="pdf" id="file" name="file" title="durchsuchen" type="file" required />
-        <label for="file"></label><br /><br />
-        <button title="hochladen" type="submit">hochladen</button>
-    </form>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <h1>Inhaltsverzeichnis hochladen</h1>
+                    <p class="lead">
+                        Bibliothek und eine PDF-Datei für den Upload auswählen
+                    </p>
+                    <form title="pdf upload" method="POST" action="result" enctype="multipart/form-data">
+                        <input id="winterthur" name="library" type="radio" value="win" />
+                        <label for="winterthur" title="Winterthur">Winterthur</label>
+                        <input id="waedenswil" name="library" type="radio" value="wae" />
+                        <label for="waedenswil" title="Wädenswil">Wädenswil</label>
+                        <input id="zuerich" name="library" type="radio" value="zue" />
+                        <label for="zuerich" title="Zürich">Zürich</label>
+                        <input accept="pdf" id="file" name="file" title="durchsuchen" type="file" required />
+                        <label for="file"></label>
+                        <button title="hochladen" type="submit">hochladen</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 text-start">
+                    <div>© ZHAW HSB Winterthur</div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
