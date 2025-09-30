@@ -8,70 +8,67 @@
     <link rel="stylesheet" href="/static/css/bootstrap.css">
     <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
-    <style>
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 140px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 150%;
-  left: 50%;
-  margin-left: -75px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
-    </style>
 </head>
 
 <body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <img title="ZHAW" src="/static/img/zhaw_logo.png" />
+                    <a id="app-title" href="/" class="h1">
+                        TOC Uploader </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <h1>Upload {{ val }}erfolgreich</h1>
+                    <p class="lead">
+                        Datei: {{ name }}
+                    </p>
+                    <p class="lead">
+                        {{ message }}
+                    </p>
+                    <p>Datensatz:
+                        <input title="Network Id" type="text" value="{{ id }}" id="network_id" />
+                        <button title="kopieren" type="button" onclick="cpTextFunc('network_id')">
+                            kopieren
+                        </button>
+                    </p>
+                    {% block body %}
+                      {% if url %}
+                    <p>Feld <span class="is-red">856 42</span>:
+                        <input title="MARC XML" type="text" value="{{ marc }}" id="marc_data" />
+                        <button title="kopieren" type="button" onclick="cpTextFunc('marc_data')">
+                            kopieren
+                        </button>
+                    </p>
+                    <p>Link überprüfen: <a href="{{ url }}" target=\"_blank\">Inhaltsverzeichnis</a></p>
+                      {% endif %}
+                    {% endblock %}
+                    <p><a href="/">zurück</a> zur Eingabemaske</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 text-start">
+                    <div>© ZHAW HSB Winterthur</div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <h1>Inhaltsverzeichnis</h1>
     <h2>Upload {{ val }}erfolgreich</h2>
-    <p>Datei: <code>{{ name }}</code></p>
+    <p>Datei: <span class="is-red">{{ name }}</span></p>
     <p>{{ message }}</p>
-    <p>Datensatz:
-      <input title="Network Id" type="text" value="{{ id }}" id="network_id" />
-      <button title="kopieren" type="button" onclick="cpTextFunc('network_id')">
-        kopieren
-      </button>
-    </p>
-    {% block body %}
-      {% if url %}
-    <p>Feld <code>856 42</code>:
-      <input title="MARC XML" type="text" value="{{ marc }}" id="marc_data" />
-      <button title="kopieren" type="button" onclick="cpTextFunc('marc_data')">
-        kopieren
-      </button>
-    </p>  
-    <p>Link überprüfen: <a href="{{ url }}" target=\"_blank\">Inhaltsverzeichnis</a></p>
-      {% endif %}
-    {% endblock %}
-    <p><a href="/">zurück</a> zur Eingabemaske</p>
+    
 
     <script>
 function cpTextFunc(field) {
