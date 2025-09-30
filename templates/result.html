@@ -28,29 +28,35 @@
                 <div class="col-6 mx-auto">
                     <h1>Upload {{ val }}erfolgreich</h1>
                     <p class="lead">
-                        Datei: {{ name }}
+                        ausgewählte Datei: {{ name }}
                     </p>
                     <p class="lead">
                         {{ message }}
                     </p>
-                    <p>Datensatz:
-                        <input title="Network Id" type="text" value="{{ id }}" id="network_id" />
-                        <button title="kopieren" type="button" onclick="cpTextFunc('network_id')">
+                    <label for="network_id">
+                        Datensatz
+                    </label>
+                    <input title="Network Id" type="text" value="{{ id }}" id="network_id" class="form-control" />
+                    <div class="text-end">
+                        <button title="kopieren" type="button" onclick="cpTextFunc('network_id')" class="btn btn-primary">
                             kopieren
                         </button>
-                    </p>
+                    </div>
                     {% block body %}
-                      {% if url %}
-                    <p>Feld <span class="is-red">856 42</span>:
-                        <input title="MARC XML" type="text" value="{{ marc }}" id="marc_data" />
-                        <button title="kopieren" type="button" onclick="cpTextFunc('marc_data')">
+                        {% if url %}
+                    <label for="marc_data">
+                        Feld <span class="is-red">856 42</span>
+                    </label>
+                    <input title="MARC XML" type="text" value="{{ marc }}" id="marc_data" class="form-control" />
+                    <div class="text-end">
+                        <button title="kopieren" type="button" onclick="cpTextFunc('marc_data')" class="btn btn-primary">
                             kopieren
                         </button>
-                    </p>
-                    <p>Link überprüfen: <a href="{{ url }}" target=\"_blank\">Inhaltsverzeichnis</a></p>
-                      {% endif %}
+                    </div>
+                    <p class="lead">Link überprüfen: <a href="{{ url }}" target=\"_blank\">Inhaltsverzeichnis</a></p>
+                        {% endif %}
                     {% endblock %}
-                    <p><a href="/">zurück</a> zur Eingabemaske</p>
+                    <p class="lead"><a href="/">zurück</a> zur Eingabemaske</p>
                 </div>
             </div>
         </div>
@@ -64,11 +70,6 @@
             </div>
         </div>
     </footer>
-    <h1>Inhaltsverzeichnis</h1>
-    <h2>Upload {{ val }}erfolgreich</h2>
-    <p>Datei: <span class="is-red">{{ name }}</span></p>
-    <p>{{ message }}</p>
-    
 
     <script>
 function cpTextFunc(field) {
