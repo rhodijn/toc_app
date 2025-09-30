@@ -26,36 +26,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-6 mx-auto">
-                    <h1>Inhaltsverzeichnis hochladen</h1>
-                    <p class="lead">
-                        Bibliothek und eine PDF-Datei für den Upload auswählen
-                    </p>
-                    <form title="pdf upload" method="POST" action="result" enctype="multipart/form-data">
-                        <label for="library">
-                            Bibliothek <span class="is-red">*</span>
-                        </label>
-                        <select title="library" id="library" name="library" class="form-control" required>
-                            <option id="" value="">
-                            </option>
-                            <option id="winterthur" value="win">
-                                Winterthur
-                            </option>
-                            <option id="waedenswil" value="wae">
-                                Wädenswil
-                            </option>
-                            <option id="zuerich" value="zue">
-                                Zürich
-                            </option>
-                        </select>
-                        <label for="file">
-                            PDF Datei hochladen <span class="is-red">*</span>
-                        </label>
-                        <input id="file" type="file" name="file" filetype="pdf" accept=".pdf"
-                            class="form-control" required />
-                        <div class="text-end">
-                            <button type="submit" name="load" class="btn btn-primary">hochladen</button>
-                        </div>
-                    </form>
+                    <fieldset>
+                        <form title="pdf upload" method="POST" action="result" enctype="multipart/form-data">
+                            <legend><h1>Inhaltsverzeichnis hochladen</h1></legend>
+                            <p class="lead">
+                                Bibliothek und eine PDF-Datei für den Upload auswählen
+                            </p>
+                            <label for="library">
+                                Bibliothek <span class="is-red">*</span>
+                            </label>
+                            <select title="library" id="library" name="library" class="form-control" required>
+                                <option id="" value="">
+                                </option>
+                                <option id="winterthur" value="win">
+                                    Winterthur
+                                </option>
+                                <option id="waedenswil" value="wae">
+                                    Wädenswil
+                                </option>
+                                <option id="zuerich" value="zue">
+                                    Zürich
+                                </option>
+                            </select>
+                            <label for="file">
+                                PDF Datei hochladen <span class="is-red">*</span>
+                            </label>
+                            <input id="file" type="file" name="file" filetype="pdf" accept=".pdf"
+                                class="form-control" required />
+                            <div class="text-end">
+                                <button type="submit" name="load" class="btn btn-primary">hochladen</button>
+                            </div>
+                        </form>
+                    </fieldset>
                 </div>
             </div>
         </div>
