@@ -53,10 +53,16 @@
                             kopieren
                         </button>
                     </div>
-                    <p class="lead">Link überprüfen: <a href="{{ url }}" target=\"_blank\">Inhaltsverzeichnis</a></p>
+                    <div class="text-end">
+                        <p class="lead">
+                            Link überprüfen: <a href="{{ url }}" class="btn btn-primary" target=\"_blank\">Inhaltsverzeichnis</a>
+                        </p>
+                    </div>
                         {% endif %}
                     {% endblock %}
-                    <p class="lead"><a href="/">zurück</a> zur Eingabemaske</p>
+                    <div class="text-end">
+                        <p class="lead">zur Eingabemaske <a href="/" class="btn btn-primary">zurück</a></p>
+                    </div>
                 </div>
             </div>
         </div>
