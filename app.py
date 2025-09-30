@@ -97,7 +97,7 @@ class toc_app:
                                     msg = f"Datei {network_id}.pdf bereits online"
                                     val = 'nicht '
                 else:
-                    msg = f"ungültiges Dateiformat ({f.filename.split('.')[-1].lower()}), bitte eine pdf-Datei auswählen ({req})"
+                    msg = f"ungültiges Dateiformat ({f.filename.split('.')[-1].lower()}), bitte eine pdf-Datei auswählen"
                 return render_template('result.html', id=network_id, marc=marc, message=msg, name=f.filename, url=url, val=val)
 
     # ------------------------------------------------------------------
