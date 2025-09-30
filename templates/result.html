@@ -36,32 +36,34 @@
                     <label for="network_id">
                         Datensatz
                     </label>
-                    <input title="Network Id" type="text" value="{{ id }}" id="network_id" class="form-control" />
-                    <div class="text-end">
-                        <button title="kopieren" type="button" onclick="cpTextFunc('network_id')" class="btn btn-primary">
-                            kopieren
-                        </button>
+                    <div class="input-group mb-3">
+                        <input title="Network Id" type="text" value="{{ id }}" id="network_id" class="form-control" />
+                        <div class="input-group-append">
+                            <button title="kopieren" type="button" onclick="cpTextFunc('network_id')" class="btn btn-primary" class="input-group-text">
+                                kopieren
+                            </button>
+                        </div>
                     </div>
                     {% block body %}
                         {% if url %}
                     <label for="marc_data">
                         Feld <span class="is-red">856 42</span>
                     </label>
-                    <input title="MARC XML" type="text" value="{{ marc }}" id="marc_data" class="form-control" />
-                    <div class="text-end">
-                        <button title="kopieren" type="button" onclick="cpTextFunc('marc_data')" class="btn btn-primary">
+                    <div class="input-group mb-3">
+                        <input title="MARC XML" type="text" value="{{ marc }}" id="marc_data" class="form-control" />
+                        <button title="kopieren" type="button" onclick="cpTextFunc('marc_data')" class="btn btn-primary" class="input-group-text" class="input-group-append">
                             kopieren
                         </button>
                     </div>
-                    <div class="text-end">
-                        <p class="lead">
-                            Link überprüfen: <a href="{{ url }}" class="btn btn-primary" target=\"_blank\">Inhaltsverzeichnis</a>
-                        </p>
+                    <div class="text-start">
+                        <label for="toc-link">Link überprüfen</label>
+                        <a href="{{ url }}" class="btn btn-primary" target=\"_blank\" id="toc-link">Inhaltsverzeichnis</a>
                     </div>
                         {% endif %}
                     {% endblock %}
-                    <div class="text-end">
-                        <p class="lead">zur Eingabemaske <a href="/" class="btn btn-primary">zurück</a></p>
+                    <div class="text-start">
+                        <label for="back">zur Eingabemaske</label>
+                        <a href="/" class="btn btn-primary id="back">zurück</a>
                     </div>
                 </div>
             </div>
