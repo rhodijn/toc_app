@@ -22,6 +22,7 @@
  * 6.6  Loader
  * 6.7  Alert
  * 7.   Utilities
+ * 8.   Additions
  */
 
 /*
@@ -317,3 +318,12 @@ table tr td>* {
     display: table-row;
     border: 3px solid red;
 }
+
+/*
+ * 8.   Additions
+ */
+
+ .cp-txt-field {
+    height: 38px;
+    margin-top: 15px;
+ }
