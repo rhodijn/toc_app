@@ -17,9 +17,9 @@ from modules.jsonhandler import *
 SECRETS = dotenv_values('.env')
 
 
-def upload_pdf(filename: str, lib: str, network_id: int) -> dict:
+def upload_pdf(filename: str, lib: str, network_id: int) -> str:
     """
-    upload toc-file (pdf) to remote server (if file  is not online yet)
+    upload toc-file (pdf) to remote server (if file is not online yet)
 
     parameters:
     filename: str = file name of the local file
@@ -56,5 +56,4 @@ def upload_pdf(filename: str, lib: str, network_id: int) -> dict:
 
     sftp_client.close()
     ssh_client.close()
-
     return url
