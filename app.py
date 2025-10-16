@@ -46,7 +46,7 @@ class toc_app:
         def upload():
             """
             Rendert ein HTML Formular. Der Ordner *templates* muss neben
-            dieser Datei liegen und eine Datei *upload.html* enthalten.
+            dieser Datei liegen und die Datei *upload.html* enthalten.
             """
             return render_template('upload.html')
 
@@ -54,7 +54,7 @@ class toc_app:
         def result():
             """
             Rendert ein HTML Formular. Der Ordner *templates* muss neben
-            dieser Datei liegen und eine Datei *result.html* enthalten.
+            dieser Datei liegen und die Datei *result.html* enthalten.
             """
             marc = ''
             network_id = None
@@ -105,7 +105,7 @@ class toc_app:
     # ------------------------------------------------------------------
     def run(self):
         """
-        Startet den eingebauten Entwicklungs Server.
+        Startet den eingebauten Entwicklungs-Server
         """
         self.app.run(host=self.host, port=self.port, debug=self.debug)
 
@@ -114,6 +114,6 @@ class toc_app:
 # wenn das Skript direkt ausgeführt wird, Instanz erzeugen und starten
 # ----------------------------------------------------------------------
 if __name__ == '__main__':
-    # Optional: Parameter per Kommandozeile oder Umgebungsvariablen anpassen
+    # Optional: Parameter per Kommandozeile oder Umgebungsvariable anpassen
     app_instance = toc_app()
     app_instance.run()
