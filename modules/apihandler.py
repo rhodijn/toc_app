@@ -36,8 +36,8 @@ def api_request(method: str, value: str, frmt: str, par_1: str, par_2='') -> tup
 
     if method == 'get':
         if frmt == 'j':
-            req = f"{SECRETS['API_URL']}{par_1}{value}{par_2}&apikey={SECRETS['API_KEY']}&format={config['api']['j']}"
+            req = f"{SECRETS['API_URL']}{par_1}{value}{par_2}&apikey={SECRETS['API_KEY']}&format={frmt}"
         elif frmt == 'x':
-            req = f"{SECRETS['API_URL']}{par_1}{value}{par_2}&apikey={SECRETS['API_KEY']}&format={config['api']['x']}"
+            req = f"{SECRETS['API_URL']}{par_1}{value}{par_2}&apikey={SECRETS['API_KEY']}&format={frmt}"
         resp = requests.get(req)
     return req, resp

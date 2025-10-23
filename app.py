@@ -67,7 +67,7 @@ class toc_app:
                     barcode = f.filename.split('.')[0].upper()
                     f.save(f"upload/{barcode}.{f.filename.split('.')[-1].lower()}")
                     try:
-                        req, get_iz_mmsid = api_request('get', barcode, 'j', 'items?item_barcode=')
+                        req, get_iz_mmsid = api_request('get', barcode, 'json', 'items?item_barcode=')
                         data = json.loads(get_iz_mmsid.content.decode(encoding='utf-8'))
                         mmsid_iz = data['bib_data']['mms_id']
                     except:
@@ -75,7 +75,7 @@ class toc_app:
                         val = 'nicht '
                     else:
                         try:
-                            req, get_network_id = api_request('get', mmsid_iz, 'j', 'bibs/', CONFIG["api"]["get"])
+                            req, get_network_id = api_request('get', mmsid_iz, 'json', 'bibs/', CONFIG["api"]["get"])
                             data = json.loads(get_network_id.content.decode(encoding='utf-8'))
                             network_id = data['linked_record_id']['value']
                         except:
