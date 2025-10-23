@@ -10,7 +10,6 @@
 #     ###################
 
 
-from dotenv import dotenv_values
 from flask import Flask, render_template, request
 from modules.apihandler import *
 from modules.uploader import *
