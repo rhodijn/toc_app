@@ -39,11 +39,9 @@
                         </label>
                         <div class="input-group mb-3">
                             <input title="Network Id" type="text" value="{{ id }}" id="network_id" class="form-control cp-txt-field" />
-                            <div class="input-group-append">
-                                <button title="kopieren" type="button" onclick="cpTextFunc('network_id')" class="btn btn-primary input-group-append">
-                                    kopieren
-                                </button>
-                            </div>
+                            <button title="kopieren" type="button" onclick="cpTextFunc('network_id')" class="btn btn-primary input-group-append">
+                                kopieren
+                            </button>
                         </div>
                         {% block body %}
                             {% if url %}
