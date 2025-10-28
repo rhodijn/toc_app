@@ -12,7 +12,6 @@
 
 import os, requests
 from dotenv import dotenv_values
-from modules.jsonhandler import *
 
 SECRETS = dotenv_values('.env')
 
