@@ -31,7 +31,6 @@ def api_request(method: str, value: str, frmt: str, par_1: str, par_2='') -> tup
     returns:
     tuple = (req: str, response: requests.models.Response)
     """
-    config = load_json('config.json', 'd')
     resp = False
 
     if method == 'get':
