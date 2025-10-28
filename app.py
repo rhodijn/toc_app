@@ -66,7 +66,7 @@ class toc_app:
                 l = request.form.get('library')
                 if f.filename.split('.')[-1].lower() in ALLOWED_EXTENSIONS:
                     barcode = f.filename.split('.')[0].split('_')[0].upper()
-                    f.save(f"upload/{barcode}.{f.filename.split('.')[-1].lower()}")
+                    f.save(f"{UPLOAD_FOLDER}/{barcode}.{f.filename.split('.')[-1].lower()}")
                     try:
                         req, get_iz_mmsid = api_request(SECRETS['API_URL'], SECRETS['API_KEY'], 'get', barcode, 'json', 'items?item_barcode=')
                         data = json.loads(get_iz_mmsid.content.decode(encoding='utf-8'))
