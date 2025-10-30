@@ -11,7 +11,7 @@
 
 
 from flask import Flask, render_template, request
-from modules.apihandler import *
+from modules.api_handler import *
 from modules.uploader import *
 
 ALLOWED_EXTENSIONS = {'pdf'}

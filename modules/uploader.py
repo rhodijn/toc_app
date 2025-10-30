@@ -12,7 +12,7 @@
 
 import os, paramiko
 from dotenv import dotenv_values
-from modules.jsonhandler import *
+from modules.json_handler import *
 
 SECRETS = dotenv_values('.env')
 
