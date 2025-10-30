@@ -55,8 +55,6 @@ class toc_app:
             dieser Datei liegen und die Datei *result.html* enthalten.
             """
             marc = ''
-            mmsid_iz = None
-            network_id = None
             url = None
             val = ''
 

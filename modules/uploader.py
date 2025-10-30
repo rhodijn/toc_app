@@ -50,9 +50,9 @@ def upload_pdf(filename: str, lib: str, network_id: int) -> str:
             url = f"https://{SECRETS['FTP_URL']}/{CONFIG['path']['r']}{CONFIG['library'][lib]}{network_id}.pdf"
         except:
             url = False
-        else:
-            if os.path.exists(f"{CONFIG['path']['u']}{filename}"):
-                os.remove(f"{CONFIG['path']['u']}{filename}")
+
+    if os.path.exists(f"{CONFIG['path']['u']}{filename}"):
+        os.remove(f"{CONFIG['path']['u']}{filename}")
 
     sftp_client.close()
     ssh_client.close()
