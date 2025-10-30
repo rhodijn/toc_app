@@ -55,8 +55,8 @@ class toc_app:
             dieser Datei liegen und die Datei *result.html* enthalten.
             """
             marc = ''
+            mmsid_iz = None
             network_id = None
-            req = None
             url = None
             val = ''
 
@@ -67,17 +67,15 @@ class toc_app:
                     barcode = f.filename.split('.')[0].split('_')[0].upper()
                     f.save(f"{CONFIG['path']['u']}/{barcode}.{f.filename.split('.')[-1].lower()}")
                     try:
-                        req, get_iz_mmsid = api_request(SECRETS['API_URL'], SECRETS['API_KEY'], 'get', barcode, 'json', 'items?item_barcode=')
-                        data = json.loads(get_iz_mmsid.content.decode(encoding='utf-8'))
-                        mmsid_iz = data['bib_data']['mms_id']
+                        response = api_request(SECRETS['API_URL'], SECRETS['API_KEY'], 'get', barcode, 'json', 'items?item_barcode=')
+                        mmsid_iz = response['bib_data']['mms_id']
                     except:
                         msg = f"MMS ID zu Item {barcode} nicht gefunden"
                         val = 'nicht '
                     else:
                         try:
-                            req, get_network_id = api_request(SECRETS['API_URL'], SECRETS['API_KEY'], 'get', mmsid_iz, 'json', 'bibs/', CONFIG["api"]["get"])
-                            data = json.loads(get_network_id.content.decode(encoding='utf-8'))
-                            network_id = data['linked_record_id']['value']
+                            response = api_request(SECRETS['API_URL'], SECRETS['API_KEY'], 'get', mmsid_iz, 'json', 'bibs/', CONFIG["api"]["get"])
+                            network_id = response['linked_record_id']['value']
                         except:
                             msg = f"Network Id zu Datensatz {mmsid_iz} nicht gefunden"
                             val = 'nicht '
