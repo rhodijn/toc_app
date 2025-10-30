@@ -16,7 +16,6 @@ from modules.uploader import *
 
 ALLOWED_EXTENSIONS = {'pdf'}
 SECRETS = dotenv_values('.env')
-UPLOAD_FOLDER = 'files/upload'
 CONFIG = load_json('config.json', 'd')
 
 
@@ -27,7 +26,7 @@ class toc_app:
     def __init__(self, host: str = '127.0.0.1', port: int = 5000, debug: bool = True):
         # Flask‑Instanz erzeugen
         self.app = Flask(__name__)
-        self.app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+        self.app.config['UPLOAD_FOLDER'] = CONFIG['path']['u']
 
         # Konfigurationswerte speichern (können später verwendet werden)
         self.host = host
@@ -66,7 +65,7 @@ class toc_app:
                 l = request.form.get('library')
                 if f.filename.split('.')[-1].lower() in ALLOWED_EXTENSIONS:
                     barcode = f.filename.split('.')[0].split('_')[0].upper()
-                    f.save(f"{UPLOAD_FOLDER}/{barcode}.{f.filename.split('.')[-1].lower()}")
+                    f.save(f"{CONFIG['path']['u']}/{barcode}.{f.filename.split('.')[-1].lower()}")
                     try:
                         req, get_iz_mmsid = api_request(SECRETS['API_URL'], SECRETS['API_KEY'], 'get', barcode, 'json', 'items?item_barcode=')
                         data = json.loads(get_iz_mmsid.content.decode(encoding='utf-8'))
