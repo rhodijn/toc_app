@@ -16,7 +16,7 @@ from modules.uploader import *
 
 ALLOWED_EXTENSIONS = {'pdf'}
 SECRETS = dotenv_values('.env')
-UPLOAD_FOLDER = 'upload'
+UPLOAD_FOLDER = 'files/upload'
 CONFIG = load_json('config.json', 'd')
 
 

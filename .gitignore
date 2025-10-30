@@ -1,5 +1,5 @@
 # ignore
 modules/__pycache__
 toc/*
-upload/*
+files/*
 .env

@@ -15,7 +15,7 @@
     "path": {
         "d": "data/",
         "r": "public/swisscovery/inhaltsverzeichnis/",
-        "u": "upload/"
+        "u": "files/upload/"
     },
     "library": {
         "wae": "waedenswil/",
